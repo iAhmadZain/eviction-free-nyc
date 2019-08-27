@@ -50,12 +50,12 @@ export default {
     let resultUrl = `/${intl.locale}/guide/${boro}/${caseType}`;
 
     //  short circuit admin hearing page
-    if(user.nycha && user.caseType === 'other') {
+    if(user.nycha && caseType === 'other') {
       resultUrl = `/${intl.locale}/admin-hearings`;
 
     // all other pages
     } else {
-      if(user.caseType !== 'general' && isEligible) {
+      if(caseType !== 'general' && isEligible) {
         resultUrl += 'rtc';
       }
     }
