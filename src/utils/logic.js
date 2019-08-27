@@ -37,10 +37,11 @@ export default {
     if(boro === 'STATEN ISLAND' || boro === 'staten island') boro = 'staten';
 
 
-    // explicitly set caseType to "other" as the textbot sends whatever
+    // explicitly set caseType to "general" as the textbot sends whatever
     // the user inputted
     let caseType;
-    if(user.caseType !== 'nonpay' || user.caseType !== 'holdover') caseType = 'other';
+    if(user.nycha && user.caseType === 'other') caseType = 'other';
+    else if(user.caseType !== 'nonpay' || user.caseType !== 'holdover') caseType = 'general';
     else caseType = user.caseType;
     // if(user.nycha && isEligible && user.caseType === 'nonpay') {
     //   caseType = 'nycha';
@@ -50,16 +51,13 @@ export default {
 
     //  short circuit admin hearing page
     if(user.nycha && user.caseType === 'other') {
-
       resultUrl = `/${intl.locale}/admin-hearings`;
 
     // all other pages
     } else {
-
       if(user.caseType !== 'general' && isEligible) {
         resultUrl += 'rtc';
       }
-
     }
 
     if(user.zip) {
