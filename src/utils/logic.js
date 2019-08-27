@@ -41,7 +41,7 @@ export default {
     // the user inputted
     let caseType;
     if(user.nycha && user.caseType === 'other') caseType = 'other';
-    else if(user.caseType !== 'nonpay' || user.caseType !== 'holdover') caseType = 'general';
+    else if(user.caseType !== 'nonpay' && user.caseType !== 'holdover') caseType = 'general';
     else caseType = user.caseType;
     // if(user.nycha && isEligible && user.caseType === 'nonpay') {
     //   caseType = 'nycha';
