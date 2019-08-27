@@ -18,9 +18,16 @@ export default {
 
     if( user.boro === null ||
         user.caseType === null ||
-        user.areaEligible === null ||
         user.incomeEligible === null) {
       throw new Error("Missing a step!");
+    }
+
+    // adding in the case where the zip hasn't already been assessed
+
+    console.log('hi dan', user.areaEligible);
+    if(user.areaEligible === null || user.areaEligible === undefined) {
+      console.log('area?');
+      user.areaEligible = this.isLocationEligible(user.zip);
     }
 
     const isEligible = user.areaEligible && user.incomeEligible;
