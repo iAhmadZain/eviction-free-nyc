@@ -23,10 +23,7 @@ export default {
     }
 
     // adding in the case where the zip hasn't already been assessed
-
-    console.log('hi dan', user.areaEligible);
     if(user.areaEligible === null || user.areaEligible === undefined) {
-      console.log('area?');
       user.areaEligible = this.isLocationEligible(user.zip);
     }
 
@@ -39,7 +36,12 @@ export default {
 
     if(boro === 'STATEN ISLAND' || boro === 'staten island') boro = 'staten';
 
-    let caseType = user.caseType;
+
+    // explicitly set caseType to "other" as the textbot sends whatever
+    // the user inputted
+    let caseType;
+    if(user.caseType === 'nonpay' || user.caseType === 'holdover') caseType = 'other';
+    else caseType = user.caseType;
     // if(user.nycha && isEligible && user.caseType === 'nonpay') {
     //   caseType = 'nycha';
     // }
