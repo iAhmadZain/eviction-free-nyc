@@ -40,7 +40,7 @@ export default {
     // explicitly set caseType to "other" as the textbot sends whatever
     // the user inputted
     let caseType;
-    if(user.caseType === 'nonpay' || user.caseType === 'holdover') caseType = 'other';
+    if(user.caseType !== 'nonpay' || user.caseType !== 'holdover') caseType = 'other';
     else caseType = user.caseType;
     // if(user.nycha && isEligible && user.caseType === 'nonpay') {
     //   caseType = 'nycha';
